@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Typography variant="h2" sx={{ textAlign: 'center' }}>
-        PROCEEM-UFRN
+        PROCEEM
       </Typography>
       <FormColaborador />
     </div>
