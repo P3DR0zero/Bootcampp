@@ -1,21 +1,19 @@
-import { AddTodoForm } from "app/add-todo-form";
-import { Header } from "app/header";
-import { TodoList } from "app/todos-list";
-import { stackServerApp } from "app/stack";
+import { AddTodoForm } from "../neon/todo-add-form";
+import { TodosList } from "../neon/todos-list";
+import { stackServerApp } from "../stack";
 
 export default async function Home() {
   const user = await stackServerApp.getUser();
 
   if (!user) {
-    return <Header />;
+    return null; // Removido o componente Header, pois não está definido
   }
 
   return (
     <div>
-      <Header />
       <main>
         <AddTodoForm />
-        <TodoList />
+        <TodosList />
       </main>
     </div>
   );
