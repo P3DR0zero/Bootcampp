@@ -65,6 +65,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState('');
+  const [showPassword, setShowPassword] = React.useState(false); // Estado para controlar a exibição da senha
 
   const validateInputs = () => {
     const email = document.getElementById('e-mail') as HTMLInputElement;
@@ -129,7 +130,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
             variant="h4"
             sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
           >
-            Entrar
+            Registrar
           </Typography>
           <Box
             component="form"
@@ -172,7 +173,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                 fullWidth
                 name="senha"
                 placeholder="••••••"
-                type="senha"
+                type={showPassword ? 'text' : 'password'} // Alterna entre 'text' e 'password'
                 id="senha"
                 autoComplete="nova-senha"
                 variant="outlined"
@@ -182,8 +183,25 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               />
             </FormControl>
             <FormControlLabel
-              control={<Checkbox value="allowExtraEmails" color="primary" />}
+              control={
+                <Checkbox
+                  checked={showPassword}
+                  onChange={() => setShowPassword(!showPassword)} // Alterna o estado de exibição da senha
+                  color="primary"
+                />
+              }
+              label="Mostrar senha"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  value="allowExtraEmails"
+                  color="primary"
+                  sx={{ transform: 'scale(0.9)' }} // Reduzido o tamanho do checkbox
+                />
+              }
               label="Eu quero receber atualizações por e-mail sobre o Proceem"
+              sx={{ fontSize: '0.875rem' }} // Reduzido o tamanho do texto
             />
             <Button
               type="submit"
@@ -203,6 +221,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               variant="outlined"
               onClick={() => alert('Registrar-se com o Google')}
               startIcon={<GoogleIcon />}
+              sx={{ fontSize: '0.875rem', padding: '8px 16px' }} // Reduzido o tamanho do texto e o padding
             >
               Registrar-se com o Google
             </Button>
