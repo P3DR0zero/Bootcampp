@@ -28,3 +28,5 @@ export const handleGoogleAuth = async () => {
     alert('Erro ao autenticar com o Google.');
   }
 };
+
+//trocar para outro banco de dados.
